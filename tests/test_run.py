@@ -26,3 +26,10 @@ def test_settings():
     assert settings.PLATFORM in (settings.OS.linux, settings.OS.mac, settings.OS.windows)
     assert settings.HOSTS_FILE and isinstance(settings.HOSTS_FILE, str)
     assert settings.DISTRACTORS and isinstance(settings.DISTRACTORS, (set))
+
+
+def test_parse_duration():
+    assert run.parse_duration('2m') == 120  # parse minutes
+    assert run.parse_duration('30s') == 30  # parse seconds
+    assert run.parse_duration('1') == 60  # default to minutes
+    assert run.parse_duration('2') == 120

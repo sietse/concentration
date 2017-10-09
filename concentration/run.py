@@ -61,8 +61,23 @@ def lose():
     reset_network("Concentration is now lost :(.")
 
 
+seconds = int
+
+def duration(text: str) -> seconds:
+    """For example `1`, `1m`, or `60s`"""
+    head, tail = text[:-1], text[-1]
+    if tail == 'm':
+        return int(head) * 60
+    elif tail == 's':
+        return int(head)
+    elif tail in '1234567890':
+        return int(text) * 60
+    else:
+        raise ValueError("Duration should look like '1', '1m', or '60s'")
+
+
 @hug.cli('break')
-def take_break(minutes: hug.types.number=5):
+def take_break(duration: duration=5):
     """Enables temporarily breaking concentration"""
     print("")
     print("######################################### ARE YOU SURE? #####################################")
@@ -83,7 +98,7 @@ def take_break(minutes: hug.types.number=5):
     print("")
     print("######################################### TAKING A BREAK ####################################")
     try:
-        for remaining in range(minutes * 60, -1, -1):
+        for remaining in range(duration, -1, -1):
             sys.stdout.write("\r")
             sys.stdout.write("{:2d} seconds remaining without concentration.".format(remaining))
             sys.stdout.flush()
