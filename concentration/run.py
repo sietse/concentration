@@ -77,7 +77,7 @@ def duration(text: str) -> seconds:
 
 
 @hug.cli('break')
-def take_break(duration: duration=5):
+def take_break(duration: duration='5'):
     """Enables temporarily breaking concentration"""
     print("")
     print("######################################### ARE YOU SURE? #####################################")
