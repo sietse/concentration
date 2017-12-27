@@ -11,6 +11,10 @@ import hug
 
 from . import settings
 
+if sys.version_info[0] < 3:
+    input = raw_input
+else:
+    input = input
 
 def reset_network(message):
     """Resets the users network to make changes take effect"""
@@ -65,7 +69,11 @@ seconds = int
 
 def duration(text: str) -> seconds:
     """For example `1`, `1m`, or `60s`"""
+    if text == '':
+        text = input('Break for how long (1m, 30s, ...)? ')
+
     head, tail = text[:-1], text[-1]
+
     if tail == 'm':
         return int(head) * 60
     elif tail == 's':
@@ -77,7 +85,7 @@ def duration(text: str) -> seconds:
 
 
 @hug.cli('break')
-def take_break(duration: duration='5'):
+def take_break(duration: duration=''):
     """Enables temporarily breaking concentration"""
     print("")
     print("######################################### ARE YOU SURE? #####################################")
