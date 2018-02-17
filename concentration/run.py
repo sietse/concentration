@@ -56,7 +56,7 @@ def does_the_user_really_want_this(time_to_think=60):
                 elif line.startswith('(C)'):
                     print(term.bright_green(line))
                 elif line.startswith('x '):
-                    print(term.bold_bright_cyan(line))
+                    print(term.blue(line))
                 else:
                     print(line)
     print("")
