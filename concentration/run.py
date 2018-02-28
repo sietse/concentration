@@ -91,12 +91,8 @@ def improve():
     reset_network("Concentration is now improved :D!")
 
 
-@hug.cli()
-def lose():
-    """Enables access to websites that are defined as 'distractors'"""
-    if not does_the_user_really_want_this(time_to_think=60):
-        return
-
+def perform_lose():
+    """Peform the actual losing of concentration"""
     changed = False
     with open(settings.HOSTS_FILE, "r") as hosts_file:
         new_file = []
@@ -114,6 +110,13 @@ def lose():
         with open(settings.HOSTS_FILE, "w") as hosts_file:
             hosts_file.write("".join(new_file))
 
+
+@hug.cli()
+def lose():
+    """Enables access to websites that are defined as 'distractors'"""
+    if not does_the_user_really_want_this(time_to_think=60):
+        return
+    perform_lose()
     reset_network("Concentration is now lost :(.")
 
 
@@ -122,7 +125,11 @@ seconds = int
 def duration(text: str) -> seconds:
     """For example `1`, `1m`, or `60s`"""
     if text == '':
-        text = input('Break for how long (1m, 30s, ...)? ')
+        try:
+            text = input('Break for how long (1m, 30s, ...)? ')
+        except KeyboardInterrupt:
+            print("\nWell done!")
+            sys.exit(0)
 
     head, tail = text[:-1], text[-1]
 
@@ -144,7 +151,7 @@ def take_break(duration: duration=''):
         return
 
     # The user insisted on breaking concentration.
-    lose()
+    perform_lose()
     print("")
     print("######################################### TAKING A BREAK ####################################")
     try:
