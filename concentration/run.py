@@ -137,6 +137,8 @@ def duration(text: str) -> seconds:
         return int(head) * 60
     elif tail == 's':
         return int(head)
+    elif tail == 'h':
+        return int(head) * 3600
     elif tail in '1234567890':
         return int(text) * 60
     else:
