@@ -9,7 +9,7 @@ from enum import Enum
 
 OS = Enum('OS', 'linux mac windows')
 HOSTS_FILE = "/etc/hosts"
-REDIRECT_TO = "127.0.0.1"
+REDIRECT_TO = "0.0.0.0"
 START_TOKEN = "## START DISTRACTORS ##"
 END_TOKEN = "## END DISTRACTORS ##"
 SUB_DOMAINS = ('www', 'news')
