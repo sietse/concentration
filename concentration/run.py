@@ -33,14 +33,7 @@ def reset_network(message):
     print(message)
 
 
-def does_the_user_really_want_this(time_to_think=60):
-    """
-    Give the user time to change their mind. Return False if
-    they hit Ctrl-C in that time, otherwise True
-    """
-    print("")
-    print("######################################### ARE YOU SURE? #####################################")
-
+def print_todo_file():
     # Print the things that are left to do
     todofile = Path.home() / 'todo.txt'
     print("")
@@ -61,6 +54,15 @@ def does_the_user_really_want_this(time_to_think=60):
                     print(line)
     print("")
 
+
+def does_the_user_really_want_this(time_to_think=60):
+    """
+    Give the user time to change their mind. Return False if
+    they hit Ctrl-C in that time, otherwise True
+    """
+    print("")
+    print("######################################### ARE YOU SURE? #####################################")
+    print_todo_file()
     try:
         for remaining in range(time_to_think, -1, -1):
             sys.stdout.write("\r")
