@@ -50,7 +50,7 @@ def does_the_user_really_want_this(time_to_think=60):
             for line_with_newline in f.readlines():
                 line = line_with_newline[:-1]
                 if line.startswith('(A)'):
-                    print(term.cyan(line))
+                    print(term.bright_cyan(line))
                 elif line.startswith('(B)'):
                     print(term.bright_yellow(line))
                 elif line.startswith('(C)'):
