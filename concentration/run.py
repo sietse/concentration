@@ -68,10 +68,6 @@ def does_the_user_really_want_this(time_to_think=60):
         ['sudo', '-u', 'sietse',
          "/usr/bin/vivaldi", "file:///home/sietse/to-read/"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    subprocess.Popen(
-        ['sudo', '-u', 'sietse',
-         "/usr/bin/xdg-open", "file:///home/sietse/to-read/"],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     # Countdown to give the reader time to change their mind
     try:
         for remaining in range(time_to_think, -1, -1):
